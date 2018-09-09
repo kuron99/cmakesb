@@ -119,3 +119,46 @@ if(name)
 else()
     message(SEND_ERROR "assert failed")
 endif()
+
+# undefined name is assumed to be a string
+if(undef3 STREQUAL "undef3")
+else()
+    message(SEND_ERROR "assert failed")
+endif()
+
+if(name STREQUAL "name")
+    message(SEND_ERROR "assert failed")
+else()
+endif()
+
+if(arbitrary_char_string STREQUAL ${name})
+else()
+    message(SEND_ERROR "assert failed")
+endif()
+
+if(name STREQUAL arbitrary_char_string)
+else()
+    message(SEND_ERROR "assert failed")
+endif()
+
+# accident happens when a variable has variable name
+set(nameval "name")
+if(nameval STREQUAL name)
+    message(SEND_ERROR "assert failed")
+else()
+endif()
+
+set(nameval2 "name2")
+if(nameval2 STREQUAL name2)
+else()
+    message(SEND_ERROR "assert failed")
+endif()
+
+if(${nameval} STREQUAL name)
+else()
+    message(SEND_ERROR "assert failed")
+endif()
+if(${nameval} STREQUAL "name")
+    message(SEND_ERROR "assert failed")
+else()
+endif()
