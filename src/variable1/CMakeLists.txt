@@ -86,3 +86,36 @@ if(NOT DEFINED)
 else()
     message(SEND_ERROR "assert failed")
 endif()
+
+# falsy values
+set(falsy 0;faLse;oFf;nO;N;ignoRe;notfound;aaa-notfound)
+foreach(f IN LISTS falsy)
+    message("${f}")
+    if(${f})
+        message(SEND_ERROR "assert failed")
+    else()
+    endif()
+endforeach()
+
+set(empty "")
+if(empty)
+    message(SEND_ERROR "assert failed")
+else()
+endif()
+
+# truethy values
+set(truthy 1;2;tRue;oN;yes;y)
+foreach(t IN LISTS truthy)
+    message("${t}")
+    if(${t})
+    else()
+        message(SEND_ERROR "assert failed")
+    endif()
+endforeach()
+
+# char string is truthy
+set(name "arbitrary_char_string")
+if(name)
+else()
+    message(SEND_ERROR "assert failed")
+endif()
